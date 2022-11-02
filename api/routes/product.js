@@ -11,10 +11,10 @@ router.get("/:id", product_controller.findById);
 // CREATE NEW PRODUCT
 router.post("/create", product_controller.createProduct);
 
-// MODIFY PRODUCT
+// CHANGE PRODUCT
 router.put("/change/:id", product_controller.changeProduct);
 
-// DELETE PRODUCT
-router.delete("/delete/:id", product_controller.deleteProduct);
+// SOFT DELETE PRODUCT
+router.put("/delete/:id", product_controller.deleteProduct);
 
 module.exports = router;
