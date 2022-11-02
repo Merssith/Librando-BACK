@@ -11,7 +11,7 @@ router.get("/:id", product_controller.findById);
 // CREATE NEW PRODUCT
 router.post("/create", product_controller.createProduct);
 
-// MODIFY PRODUCT
+// CHANGE PRODUCT
 router.put("/change/:id", product_controller.changeProduct);
 
 // DELETE PRODUCT
