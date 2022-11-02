@@ -1,21 +1,21 @@
-const { Product } = require("../models");
+const { Book } = require("../models");
 
 exports.findAll = () => {
-  return Product.findAll();
+  return Book.findAll();
 };
 
 exports.findById = (id) => {
-  return Product.findByPk(id);
+  return Book.findByPk(id);
 };
 
 exports.create = (product) => {
-  return Product.create(product);
+  return Book.create(product);
 };
 
 exports.change = (id, body) => {
-  return Product.findByPk(id).then((product) => product.update(body));
+  return Book.findByPk(id).then((product) => product.update(body));
 };
 
 exports.delete = (id) => {
-  return Product.destroy({ where: { id } });
+  return Book.findByPk(id).then((product) => product.update({ deleted: true }));
 };
