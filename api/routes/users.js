@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { validateAuth } = require("../middlewares/auth");
 const userController = require("../controllers/usersController");
 
 //RUTA PARA REGISTRO
@@ -15,7 +16,7 @@ router.post("/logout", userController.logoutUser);
 router.put("/:id", userController.editUser);
 
 // //RUTA PARA DEVOLVER USUARIO LOGGEADO (SI LO HAY)
-// router.get("/me", userController.getMe);
+// router.get("/me",validateAuth, userController.getMe);
 
 // //RUTA PARA PROMOVER UN ADMINISTRADOR...
 // router.patch("/admin/:id", isAdmin, userController.promoveAdmin);
@@ -25,3 +26,5 @@ router.put("/:id", userController.editUser);
 
 // //RUTA PARA VER TODOS LOS USUARIOS...
 // router.get("/", isAdmin, userController.getUsers);
+
+module.exports = router;

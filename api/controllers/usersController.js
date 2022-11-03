@@ -1,4 +1,5 @@
 const userService = require("../services/userService");
+const { generateToken } = require("../config/tokens");
 
 exports.createUser = (req, res) => {
   const user = req.body;
@@ -8,7 +9,7 @@ exports.createUser = (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
-exports.login = async (req, res) => {
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   const payload = await userService.login(email, password);
   if (!payload) res.sendStatus(401);
@@ -17,7 +18,7 @@ exports.login = async (req, res) => {
   res.send(payload);
 };
 
-exports.logout = (req, res) => {
+exports.logoutUser = (req, res) => {
   res.clearCookie("token");
   res.sendStatus(204);
 };
