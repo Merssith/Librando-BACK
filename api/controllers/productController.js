@@ -24,14 +24,15 @@ exports.createProduct = (req, res) => {
 };
 
 exports.changeProduct = (req, res) => {
-  const id = req.params.productId;
+  const id = req.params.id;
   productService
     .change(id, req.body)
-    .then((updatedProduct) => res.send(updatedProduct));
+    .then((updatedProduct) => res.status(200).send(updatedProduct))
+    .catch((err) => res.status(404).send(err));
 };
 
 exports.deleteProduct = (req, res) => {
-  const id = req.params.productId;
+  const id = req.params.id;
   productService
     .delete(id)
     .then(() => res.status(204).send("Product deleted"))

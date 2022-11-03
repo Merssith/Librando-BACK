@@ -12,10 +12,14 @@ exports.create = (product) => {
   return Book.create(product);
 };
 
-exports.change = (id, body) => {
-  return Book.findByPk(id).then((product) => product.update(body));
+exports.change = async (id, body) => {
+  let product = await Book.findByPk(id);
+  product.update(body);
+  return product;
 };
 
-exports.delete = (id) => {
-  return Book.findByPk(id).then((product) => product.update({ deleted: true }));
+exports.delete = async (id) => {
+  let product = await Book.findByPk(id);
+  product.update({ deleted: true });
+  return product;
 };
