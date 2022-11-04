@@ -3,6 +3,9 @@ const router = express.Router();
 const { validateAuth } = require("../middlewares/auth");
 const userController = require("../controllers/usersController");
 
+//RUTA GET ALL USERS
+router.get("/", userController.getUsers);
+
 //RUTA PARA REGISTRO
 router.post("/register", userController.createUser);
 

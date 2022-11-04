@@ -1,6 +1,13 @@
 const userService = require("../services/userService");
 const { generateToken } = require("../config/tokens");
 
+exports.getUsers = (req, res) => {
+  userService
+    .findAll()
+    .then((orders) => res.status(200).send(orders))
+    .catch((err) => res.status(400).send(err));
+};
+
 exports.createUser = (req, res) => {
   const user = req.body;
   userService

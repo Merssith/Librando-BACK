@@ -1,5 +1,9 @@
 const { User } = require("../models");
 
+exports.findAll = () => {
+  return User.findAll();
+};
+
 exports.create = (user) => {
   return User.create(user);
 };
