@@ -45,6 +45,7 @@ User.init(
     },
     isAdmin: {
       type: Sequelize.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     },
     salt: {

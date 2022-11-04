@@ -6,7 +6,8 @@
     "start": "concurrently 'npm run server' 'npm run client'",
     "server": "nodemon api/server.js",
     "client": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "seed": "node api/utils/books.js"
   },
   "proxy": "http://localhost:3001",
   "repository": {
@@ -23,10 +24,12 @@
     "axios": "^1.1.3",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
+    "seed": "^0.4.4",
     "sequelize": "^6.25.3"
   },
   "devDependencies": {

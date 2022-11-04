@@ -7,7 +7,9 @@ const db = require("./config/db");
 const models = require("./models");
 const routes = require("./routes");
 const cookieParser = require("cookie-parser");
+const corse = require("cors");
 
+app.use(corse());
 app.use(cookieParser());
 app.use(express.json());
 app.use(volleyball);

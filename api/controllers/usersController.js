@@ -10,6 +10,7 @@ exports.getUsers = (req, res) => {
 
 exports.createUser = (req, res) => {
   const user = req.body;
+  console.log(user)
   userService
     .create(user)
     .then((newUser) => res.status(201).send(newUser))
