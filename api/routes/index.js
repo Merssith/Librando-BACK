@@ -5,10 +5,14 @@ const books = require("./book.js");
 const orders = require("./order.js");
 const users = require("./users.js");
 const status = require("./status.js");
+const cart = require("./cart")
+const paymentMethods = require("./paymentMethods")
 
 router.use("/users", users);
 router.use("/book", books);
 router.use("/order", orders);
 router.use("/status", status);
+router.use("/cart", cart);
+router.use("/paymentMethods", paymentMethods);
 
 module.exports = router;
