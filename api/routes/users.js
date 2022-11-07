@@ -18,8 +18,8 @@ router.get("/logout", userController.logoutUser);
 //RUTA PARA EDITAR UN USUARIO
 router.put("/:id", userController.editUser);
 
-// //RUTA PARA DEVOLVER USUARIO LOGGEADO (SI LO HAY)
-// router.get("/me",validateAuth, userController.getMe);
+//RUTA PARA DEVOLVER USUARIO LOGGEADO (SI LO HAY)
+router.get("/me", validateAuth, userController.getMe);
 
 // //RUTA PARA PROMOVER UN ADMINISTRADOR...
 // router.patch("/admin/:id", isAdmin, userController.promoveAdmin);

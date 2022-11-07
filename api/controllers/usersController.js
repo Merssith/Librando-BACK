@@ -10,7 +10,7 @@ exports.getUsers = (req, res) => {
 
 exports.createUser = (req, res) => {
   const user = req.body;
-  console.log(user)
+  console.log(user);
   userService
     .create(user)
     .then((newUser) => res.status(201).send(newUser))
@@ -34,6 +34,10 @@ exports.logoutUser = (req, res) => {
 exports.editUser = (req, res) => {
   const id = req.params.id;
   userService.change(id, req.body).then((updatedUser) => res.send(updatedUser));
+};
+
+exports.getMe = (req, res) => {
+  res.send(req.user);
 };
 
 // exports.removeUser = (req, res) => {
