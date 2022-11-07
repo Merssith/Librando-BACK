@@ -24,7 +24,13 @@ exports.findAll = async () => {
 };
 
 exports.create = (order) => {
-  return Order.create(order);
+  let createdOrder = {
+    total: 0,
+    userId: order.userId,
+    statusId: order.statusId,
+    paymentMethodId: order.paymentMethodId,
+  };
+  return Order.create(createdOrder);
 };
 
 exports.ordersByUser = async (id) => {
