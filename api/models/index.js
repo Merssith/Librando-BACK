@@ -5,7 +5,6 @@ const Review = require("./Review");
 const PaymentMethod = require("./PaymentMethod");
 const Status = require("./Status");
 const BookOrder = require("./BookOrder");
-const Cart = require("./Cart");
 
 Order.hasOne(Status);
 Order.hasOne(PaymentMethod);
@@ -15,19 +14,18 @@ Order.belongsTo(User);
 User.hasMany(Order);
 User.hasMany(Review);
 
-Status.belongsTo(Order);
+Status.hasMany(Order);
 
-PaymentMethod.belongsTo(Order);
+PaymentMethod.hasMany(Order);
 
-BookOrder.belongsTo(Order);
+BookOrder.hasOne(Order);
 BookOrder.hasOne(Book);
 
 Book.hasMany(Review);
+Book.hasMany(BookOrder);
 
 Review.belongsTo(Book);
 Review.belongsTo(User);
-
-Cart.hasMany(BookOrder);
 
 module.exports = {
   User,
@@ -37,5 +35,4 @@ module.exports = {
   PaymentMethod,
   Status,
   BookOrder,
-  Cart,
 };

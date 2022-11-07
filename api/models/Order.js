@@ -5,14 +5,10 @@ class Order extends Sequelize.Model {}
 
 Order.init(
   {
-    date: {
-      type: Sequelize.DATE,
-      allowNull: false,
-    },
     total: {
       type: Sequelize.FLOAT,
       allowNull: false,
-    }
+    },
   },
   {
     sequelize: db,

@@ -6,7 +6,7 @@ class Status extends Sequelize.Model {}
 Status.init(
   {
     name: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: false,
     },
   },

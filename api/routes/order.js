@@ -11,7 +11,7 @@ router.post("/create", order_controller.createOrder);
 // GET ORDERS BY USER ID
 router.get("/userOrders/:id", order_controller.getOrdersByUserId);
 
-// CHANGE ORDER STATUS
-router.put("/changeStatus/:id", order_controller.changeOrderStatus);
+// CHANGE ORDER
+router.put("/change/:id", order_controller.changeOrder);
 
 module.exports = router;

@@ -23,10 +23,11 @@ exports.getOrdersByUserId = (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
-exports.changeOrderStatus = (req, res) => {
+exports.changeOrder = (req, res) => {
   const orderId = req.params.id;
+  const changes = req.body;
   orderService
-    .changeStatus(orderId)
+    .changeOrder(orderId, changes)
     .then((statusChanged) => res.send(statusChanged))
     .catch((err) => res.status(400).send(err));
 };
