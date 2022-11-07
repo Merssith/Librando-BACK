@@ -9,7 +9,7 @@ const routes = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000/" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(volleyball);

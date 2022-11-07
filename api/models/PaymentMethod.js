@@ -6,13 +6,13 @@ class PaymentMethod extends Sequelize.Model {}
 PaymentMethod.init(
   {
     name: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     logo: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize: db,
