@@ -17,7 +17,7 @@ exports.login = async (email, password) => {
     userId: user.id,
     email: user.email,
     name: user.name,
-    lastName: user.lastName,
+    lastname: user.lastname,
   };
 };
 
