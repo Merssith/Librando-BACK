@@ -14,13 +14,18 @@ exports.login = async (email, password) => {
   const validate = await user.validatePassword(password);
   if (!validate) return false;
   return {
-    userId: user.id,
+    id: user.id,
     email: user.email,
     name: user.name,
     lastname: user.lastname,
+    isAdmin: user.isAdmin,
   };
 };
 
 exports.change = (id, body) => {
   return User.findByPk(id).then((user) => user.update(body));
+};
+
+exports.me = () => {
+  return;
 };
