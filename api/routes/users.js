@@ -13,7 +13,7 @@ router.post("/register", userController.createUser);
 router.post("/login", userController.loginUser);
 
 //RUTA PARA LOGOUT
-router.post("/logout", userController.logoutUser);
+router.get("/logout", userController.logoutUser);
 
 //RUTA PARA EDITAR UN USUARIO
 router.put("/:id", userController.editUser);
