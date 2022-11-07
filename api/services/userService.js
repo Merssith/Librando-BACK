@@ -25,7 +25,3 @@ exports.login = async (email, password) => {
 exports.change = (id, body) => {
   return User.findByPk(id).then((user) => user.update(body));
 };
-
-exports.me = () => {
-  return;
-};
