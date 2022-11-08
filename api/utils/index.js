@@ -20,11 +20,10 @@ const createBookOrders = require("./book_orders");
 
 /* Promise.all(promises); */
 
-createGenres()
-  .then(() => createBooks())
-  .then(() => createUsers())
-  .then(() => createPayments())
-  .then(() => createStatus())
-  .then(() => createOrders())
-  .then(() => createReviews())
-  .then(() => createBookOrders());
+createBooks() // Ajustado
+  .then(() => createUsers()) // No hace falta ajustar
+  .then(() => createPayments()) // No hace falta ajustar
+  .then(() => createStatus()) // No hace falta ajustar
+  .then(() => createOrders()) // Ajustado
+  .then(() => createReviews()) // Por ahora, no hace falta ajustar
+  .then(() => createBookOrders()); // Ajustado
