@@ -4,6 +4,11 @@ exports.findAll = () => {
   return User.findAll();
 };
 
+exports.findOne = async (id) => {
+  let user = await User.findByPk(id);
+  return user;
+};
+
 exports.create = (user) => {
   return User.create(user);
 };
