@@ -19,8 +19,7 @@ exports.findByOrderId = async (id) => {
 exports.create = async (bookOrder) => {
   let bookId = bookOrder.bookId;
   let book = await Book.findByPk(bookId);
-  let bookPrice = book.price;
-  let total = bookPrice * bookOrder.quantity;
+  let total = book.price * bookOrder.quantity;
   let newBookOrder = {
     quantity: bookOrder.quantity,
     total: total,
@@ -28,9 +27,14 @@ exports.create = async (bookOrder) => {
     bookId: bookId,
   };
 
+  // Update Order total
   let order = await Order.findByPk(bookOrder.orderId);
   let orderTotal = order.total;
   await order.update({ total: orderTotal + total });
+
+  // Update book stock
+  let newStock = book.stock - bookOrder.quantity;
+  await book.update({ stock: newStock });
 
   return BookOrder.create(newBookOrder);
 };

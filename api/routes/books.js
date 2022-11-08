@@ -17,6 +17,7 @@ router.put("/change/:id", book_controller.changeBook);
 // SOFT DELETE PRODUCT
 router.put("/delete/:id", book_controller.deleteBook);
 
-//
+// SEARCH PRODUCT
+router.get("/search/:queryString", book_controller.searchByQueryString);
 
 module.exports = router;

@@ -5,10 +5,6 @@ class Review extends Sequelize.Model {}
 
 Review.init(
   {
-    date: {
-      type: Sequelize.DATE,
-      allowNull: false,
-    },
     comment: {
       type: Sequelize.TEXT,
       allowNull: false,

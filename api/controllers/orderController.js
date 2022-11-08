@@ -7,6 +7,14 @@ exports.index = (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
+exports.findByOrderId = (req, res) => {
+  const orderId = req.params.id;
+  orderService
+    .findByOrderId(orderId)
+    .then((order) => res.status(200).send(order))
+    .catch((err) => res.status(400).send(err));
+};
+
 exports.createOrder = (req, res) => {
   const order = req.body;
   orderService

@@ -8,6 +8,7 @@ const status = require("./status.js");
 const paymentMethods = require("./paymentMethods");
 const reviews = require("./reviews.js");
 const bookOrder = require("./bookOrder.js");
+const genres = require("./genres.js");
 
 router.use("/users", users);
 router.use("/books", books);
@@ -16,5 +17,6 @@ router.use("/status", status);
 router.use("/paymentMethods", paymentMethods);
 router.use("/reviews", reviews);
 router.use("/bookOrder", bookOrder);
+router.use("/genres", genres);
 
 module.exports = router;
