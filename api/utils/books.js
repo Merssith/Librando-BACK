@@ -2082,10 +2082,10 @@ const books = [
   },
 ];
 
-function createBooks() {
+async function createBooks() {
   Book.bulkCreate(books).then(() => {
-    console.log("todo bien");
+    console.log("BOOKS todo bien");
   });
 }
 
-createBooks();
+module.exports = createBooks;
