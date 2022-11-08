@@ -1,4 +1,5 @@
 const { Book } = require("../models");
+const bookService = require("../services/bookService");
 
 const books = [
   {
@@ -2083,9 +2084,11 @@ const books = [
 ];
 
 async function createBooks() {
-  Book.bulkCreate(books).then(() => {
-    console.log("BOOKS todo bien");
-  });
+  for (i = 0; i < books.length; i++) {
+    let book = books[i];
+    await bookService.create(book);
+  }
+  console.log("BOOKS todo bien");
 }
 
 module.exports = createBooks;
