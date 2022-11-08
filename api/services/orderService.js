@@ -23,6 +23,21 @@ exports.findAll = async () => {
   return orders;
 };
 
+exports.findByOrderId = async (id) => {
+  let orders = await Order.findByPk(id, {
+    include: [
+      {
+        model: BookOrder,
+        required: false,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+    attributes: { exclude: ["bookOrderId"] },
+  });
+  await getAditionalInformation([orders]);
+  return orders;
+};
+
 exports.create = (order) => {
   let createdOrder = {
     total: 0,
@@ -35,7 +50,18 @@ exports.create = (order) => {
 
 exports.ordersByUser = async (id) => {
   let user = await User.findOne({ where: { id } });
-  let orders = await Order.findAll({ where: { userId: user.id } });
+  let orders = await Order.findAll({
+    where: { userId: user.id },
+    include: [
+      {
+        model: BookOrder,
+        required: false,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+    attributes: { exclude: ["bookOrderId"] },
+  });
+  await getAditionalInformation(orders);
   return orders;
 };
 
@@ -44,6 +70,8 @@ exports.changeOrder = async (id, body) => {
   order.update(body);
   return order;
 };
+
+// ASYNC FUNCTIONS TO GET ALL ADITIONAL INFORMATION
 
 async function getAditionalInformation(ordersArray) {
   await getUser(ordersArray);

@@ -5,6 +5,9 @@ const order_controller = require("../controllers/orderController.js");
 // GET ALL ORDERS
 router.get("/", order_controller.index);
 
+// GET ORDER BY ID
+router.get("/:id", order_controller.findByOrderId);
+
 // CREATE NEW ORDER
 router.post("/create", order_controller.createOrder);
 

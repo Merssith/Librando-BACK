@@ -5,37 +5,33 @@ class Book extends Sequelize.Model {}
 
 Book.init(
   {
-    title: { 
+    title: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     author: {
       type: Sequelize.STRING,
-      allowNull: false
-    },
-    genre: {
-      type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: Sequelize.TEXT,
-      allowNull: true
+      allowNull: true,
     },
     editorial: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     front: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     price: {
       type: Sequelize.FLOAT,
-      allowNull: false
+      allowNull: false,
     },
     stock: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     deleted: {
       type: Sequelize.BOOLEAN,

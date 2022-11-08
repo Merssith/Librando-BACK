@@ -38,3 +38,11 @@ exports.deleteBook = (req, res) => {
     .then(() => res.status(204).send("Book deleted"))
     .catch((err) => res.status(404).send(err));
 };
+
+exports.searchByQueryString = (req, res) => {
+  const queryString = req.params.queryString;
+  bookService
+    .searchByQueryString(queryString)
+    .then((books) => res.status(200).send(books))
+    .catch((err) => res.status(400).send(err));
+};

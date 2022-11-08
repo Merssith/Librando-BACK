@@ -1,15 +1,54 @@
-const { Book } = require("../models");
+const { Book, Genre, Review } = require("../models");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
-exports.findAll = () => {
-  return Book.findAll();
+exports.findAll = async () => {
+  let books = await Book.findAll({
+    include: [
+      {
+        model: Review,
+        required: false,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+    attributes: { exclude: ["bookOrderId"] },
+  });
+  await getGenre(books);
+  return books;
 };
 
-exports.findById = (id) => {
-  return Book.findByPk(id);
+exports.findById = async (id) => {
+  let book = await Book.findByPk(id, {
+    include: [
+      {
+        model: Review,
+        required: false,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+    attributes: { exclude: ["bookOrderId"] },
+  });
+  await getGenre([book]);
+  return book;
 };
 
-exports.create = (book) => {
-  return Book.create(book);
+exports.create = async (book) => {
+  let bookGenre = book.genre;
+  let [genre] = await Genre.findOrCreate({
+    where: { name: bookGenre },
+  });
+  let newBook = {
+    title: book.title,
+    author: book.author,
+    genreId: genre.dataValues.id,
+    description: book.description,
+    editorial: book.editorial,
+    front: book.front,
+    price: book.price,
+    stock: book.stock,
+    deleted: book.deleted,
+  };
+  return await Book.create(newBook);
 };
 
 exports.change = async (id, body) => {
@@ -23,3 +62,44 @@ exports.delete = async (id) => {
   book.update({ deleted: true });
   return book;
 };
+
+exports.searchByQueryString = async (queryString) => {
+  let books = await Book.findAll({
+    where: {
+      [Op.or]: [
+        {
+          title: {
+            [Op.iLike]: "%" + queryString + "%",
+          },
+        },
+        {
+          author: {
+            [Op.iLike]: "%" + queryString + "%",
+          },
+        },
+      ],
+    },
+    include: [
+      {
+        model: Review,
+        required: false,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+    attributes: { exclude: ["bookOrderId"] },
+  });
+  await getGenre(books);
+  return books;
+};
+
+// ASYNC FUNCTIONS TO GET ALL ADITIONAL INFORMATION
+
+async function getGenre(bookArray) {
+  for (i = 0; i < bookArray.length; i++) {
+    let genreId = bookArray[i].genreId;
+    let genre = await Genre.findByPk(genreId, {
+      attributes: { exclude: ["createdAt", "updatedAt", "bookId", "id"] },
+    });
+    bookArray[i].dataValues.genre = genre.dataValues;
+  }
+}
