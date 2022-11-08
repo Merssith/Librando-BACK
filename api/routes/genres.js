@@ -8,6 +8,9 @@ router.get("/", genres_controller.index);
 // GET GENRE BY ID
 router.get("/:id", genres_controller.findByGenreId);
 
+// GET PRODUCTS BY GENRE ID OR GENRE NAME
+router.get("/list/:queryString", genres_controller.findBooksByGenreIdOrName);
+
 // CREATE GENRE
 router.post("/create", genres_controller.createGenre);
 

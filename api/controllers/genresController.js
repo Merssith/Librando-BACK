@@ -15,6 +15,14 @@ exports.findByGenreId = (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
+exports.findBooksByGenreIdOrName = (req, res) => {
+  const queryString = req.params.queryString;
+  genreService
+    .findBookByGenreIdOrName(queryString)
+    .then((books) => res.status(200).send(books))
+    .catch((err) => res.status(400).send(err));
+};
+
 exports.createGenre = (req, res) => {
   const genre = req.body;
   genreService
