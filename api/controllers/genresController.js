@@ -18,7 +18,7 @@ exports.findByGenreId = (req, res) => {
 exports.findBooksByGenreIdOrName = (req, res) => {
   const queryString = req.params.queryString;
   genreService
-    .findBookByGenreIdOrName(queryString)
+    .findBooksByGenreIdOrName(queryString)
     .then((books) => res.status(200).send(books))
     .catch((err) => res.status(400).send(err));
 };
