@@ -1,6 +1,4 @@
 const orderService = require("../services/orderService.js");
-const userService = require("../services/userService.js");
-const emailService = require("../services/emailService");
 
 exports.index = (req, res) => {
   orderService
@@ -22,10 +20,7 @@ exports.createOrder = async (req, res) => {
   const user = await userService.findOne(req.body.userId);
   orderService
     .create(order)
-    .then((orderCreated) => {
-      emailService.sendCheckoutEmail(user.dataValues);
-      res.status(201).send(orderCreated);
-    })
+    .then((orderCreated) => res.status(201).send(orderCreated))
     .catch((err) => res.status(400).send(err));
 };
 
