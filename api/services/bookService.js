@@ -53,7 +53,25 @@ exports.create = async (book) => {
 
 exports.change = async (id, body) => {
   let book = await Book.findByPk(id);
-  book.update(body);
+  let genreName = body.genre;
+  let genre = await Genre.findOne(
+    { where: { name: genreName } },
+    {
+      attributes: { exclude: ["createdAt", "updatedAt", "bookId", "id"] },
+    }
+  );
+  let newBody = {
+    title: body.title,
+    author: body.author,
+    genreId: genre.dataValues.id,
+    description: body.description,
+    editorial: body.editorial,
+    front: body.front,
+    price: body.price,
+    stock: body.stock,
+    deleted: body.deleted,
+  };
+  await book.update(newBody);
   return book;
 };
 
