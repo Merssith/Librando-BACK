@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { validateAdmin } = require("../middlewares/auth");
 const book_controller = require("../controllers/bookController.js");
 
 // GET ALL PRODUCTS

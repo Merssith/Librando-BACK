@@ -12,4 +12,17 @@ function validateAuth(req, res, next) {
   next();
 }
 
-module.exports = { validateAuth };
+function validateAdmin(req, res, next) {
+  const token = req.cookies.token;
+  if (!token) return res.sendStatus(401);
+
+  const { user } = validateToken(token);
+  if (!user) return res.sendStatus(401);
+  if (!user.isAdmin) return res.sendStatus(405);
+
+  req.user = user;
+
+  next();
+}
+
+module.exports = { validateAuth, validateAdmin };
