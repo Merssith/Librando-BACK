@@ -40,6 +40,11 @@ exports.getMe = (req, res) => {
   res.send(req.user);
 };
 
+exports.promoveAdmin = (req, res) => {
+  const id = req.params.id;
+  userService.promove(id).then(() => res.sendStatus(200));
+};
+
 // exports.removeUser = (req, res) => {
 //   const id = req.params.id;
 //   userService.delete();

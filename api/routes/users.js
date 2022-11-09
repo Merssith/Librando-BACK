@@ -21,8 +21,8 @@ router.put("/:id", userController.editUser);
 //RUTA PARA DEVOLVER USUARIO LOGGEADO (SI LO HAY)
 router.get("/me", validateAuth, userController.getMe);
 
-// //RUTA PARA PROMOVER UN ADMINISTRADOR...
-// router.patch("/admin/:id", isAdmin, userController.promoveAdmin);
+//RUTA PARA PROMOVER UN ADMINISTRADOR...
+router.put("/admin/:id", userController.promoveAdmin);
 
 // //RUTA PARA ELIMINAR UN USUARIO...
 // router.delete("/:id", isAdmin, userController.deleteUsers);

@@ -25,3 +25,7 @@ exports.login = async (email, password) => {
 exports.change = (id, body) => {
   return User.findByPk(id).then((user) => user.update(body));
 };
+
+exports.promove = (id) => {
+  return User.findByPk(id).then((user) => user.update({ isAdmin: true }));
+};
