@@ -34,3 +34,7 @@ exports.change = (id, body) => {
 exports.promove = (id) => {
   return User.findByPk(id).then((user) => user.update({ isAdmin: true }));
 };
+
+exports.delete = (id) => {
+  return User.destroy({ where: { id } });
+};

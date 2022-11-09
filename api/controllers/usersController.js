@@ -48,7 +48,7 @@ exports.promoveAdmin = (req, res) => {
   userService.promove(id).then(() => res.sendStatus(200));
 };
 
-// exports.removeUser = (req, res) => {
-//   const id = req.params.id;
-//   userService.delete();
-// };
+exports.deleteUser = (req, res) => {
+  const id = req.params.id;
+  userService.delete(id).then(() => res.sendStatus(202));
+};

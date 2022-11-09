@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { validateAuth } = require("../middlewares/auth");
+const { validateAuth, validateAdmin } = require("../middlewares/auth");
 const userController = require("../controllers/usersController");
 
 //RUTA GET ALL USERS
-router.get("/", userController.getUsers);
+router.get("/", validateAdmin, userController.getUsers);
 
 //RUTA PARA REGISTRO
 router.post("/register", userController.createUser);
@@ -22,12 +22,9 @@ router.put("/:id", userController.editUser);
 router.get("/me", validateAuth, userController.getMe);
 
 //RUTA PARA PROMOVER UN ADMINISTRADOR...
-router.put("/admin/:id", userController.promoveAdmin);
+router.put("/admin/:id", validateAdmin, userController.promoveAdmin);
 
-// //RUTA PARA ELIMINAR UN USUARIO...
-// router.delete("/:id", isAdmin, userController.deleteUsers);
-
-// //RUTA PARA VER TODOS LOS USUARIOS...
-// router.get("/", isAdmin, userController.getUsers);
+//RUTA PARA ELIMINAR UN USUARIO...
+router.delete("/:id", validateAdmin, userController.deleteUser);
 
 module.exports = router;
