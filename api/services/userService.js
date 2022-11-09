@@ -31,6 +31,6 @@ exports.change = (id, body) => {
   return User.findByPk(id).then((user) => user.update(body));
 };
 
-exports.me = () => {
-  return;
+exports.promove = (id) => {
+  return User.findByPk(id).then((user) => user.update({ isAdmin: true }));
 };
