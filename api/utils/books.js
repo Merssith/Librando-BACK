@@ -2084,7 +2084,7 @@ const books = [
 ];
 
 async function createBooks() {
-  for (i = 0; i < books.length; i++) {
+  for (let i = 0; i < books.length; i++) {
     let book = books[i];
     await bookService.create(book);
   }

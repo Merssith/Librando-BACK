@@ -8,7 +8,7 @@ exports.findByOrderId = async (id) => {
   let bookOrders = await BookOrder.findAll({
     where: { orderId: id },
   });
-  for (i = 0; i < bookOrders.length; i++) {
+  for (let i = 0; i < bookOrders.length; i++) {
     let bookId = bookOrders[i].bookId;
     let findBook = await Book.findByPk(bookId);
     bookOrders[i].dataValues.book = findBook;

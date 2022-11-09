@@ -49,7 +49,7 @@ exports.create = (order) => {
 };
 
 exports.ordersByUser = async (id) => {
-  let user = await User.findOne({ where: { id } });
+  let user = await User.findByPk(id);
   let orders = await Order.findAll({
     where: { userId: user.id },
     include: [
@@ -82,7 +82,7 @@ async function getAditionalInformation(ordersArray) {
 }
 
 async function getPayment(ordersArray) {
-  for (i = 0; i < ordersArray.length; i++) {
+  for (let i = 0; i < ordersArray.length; i++) {
     let paymentId = ordersArray[i].statusId;
     let payment = await PaymentMethod.findByPk(paymentId, {
       attributes: { exclude: ["createdAt", "updatedAt", "orderId"] },
@@ -92,7 +92,7 @@ async function getPayment(ordersArray) {
 }
 
 async function getStatus(ordersArray) {
-  for (i = 0; i < ordersArray.length; i++) {
+  for (let i = 0; i < ordersArray.length; i++) {
     let statusId = ordersArray[i].statusId;
     let status = await Status.findByPk(statusId, {
       attributes: { exclude: ["createdAt", "updatedAt", "orderId"] },
@@ -102,7 +102,7 @@ async function getStatus(ordersArray) {
 }
 
 async function getUser(ordersArray) {
-  for (i = 0; i < ordersArray.length; i++) {
+  for (let i = 0; i < ordersArray.length; i++) {
     let userId = ordersArray[i].userId;
     let user = await User.findByPk(userId, {
       attributes: { exclude: ["createdAt", "updatedAt", "password", "salt"] },
@@ -112,9 +112,9 @@ async function getUser(ordersArray) {
 }
 
 async function getBooks(ordersArray) {
-  for (i = 0; i < ordersArray.length; i++) {
+  for (let i = 0; i < ordersArray.length; i++) {
     let bookOrders = ordersArray[i].book_orders;
-    for (j = 0; j < bookOrders.length; j++) {
+    for (let j = 0; j < bookOrders.length; j++) {
       let bookId = bookOrders[j].bookId;
       let findBook = await Book.findByPk(bookId, {
         attributes: { exclude: ["bookOrderId", "createdAt", "updatedAt"] },

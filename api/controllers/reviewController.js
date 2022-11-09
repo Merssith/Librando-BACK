@@ -28,5 +28,5 @@ exports.createReviewByBookId = (req, res) => {
   reviewService
     .create(review)
     .then((reviewCreated) => res.status(201).send(reviewCreated))
-    .catch((err) => res.status(400).send(err));
+    .catch((err) => res.status(412).send(String(err)));
 };

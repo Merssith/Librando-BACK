@@ -1,4 +1,3 @@
-const { BookOrder } = require("../models");
 const bookOrderService = require("../services/bookOrderService.js");
 
 // No es necesario pasarle el total, lo autocalcula con el precio del libro por la cantidad.
@@ -19,10 +18,15 @@ const book_orders = [
     quantity: 1,
     bookId: 3,
   },
+  {
+    orderId: 2,
+    quantity: 2,
+    bookId: 1,
+  },
 ];
 
 async function createBookOrders() {
-  for (i = 0; i < book_orders.length; i++) {
+  for (let i = 0; i < book_orders.length; i++) {
     let bookOrder = book_orders[i];
     await bookOrderService.create(bookOrder);
   }
