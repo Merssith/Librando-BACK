@@ -9,6 +9,11 @@ exports.findOne = async (id) => {
   return user;
 };
 
+exports.findByDni = async (dni) => {
+  let user = await User.findOne({ where: { dni } });
+  return user;
+};
+
 exports.create = (user) => {
   return User.create(user);
 };
