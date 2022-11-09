@@ -17,7 +17,6 @@ exports.findByOrderId = (req, res) => {
 
 exports.createOrder = async (req, res) => {
   const order = req.body;
-  const user = await userService.findOne(req.body.userId);
   orderService
     .create(order)
     .then((orderCreated) => res.status(201).send(orderCreated))
