@@ -1,4 +1,4 @@
-const { Review } = require("../models");
+const reviewService = require("../services/reviewService");
 
 const reviews = [
   {
@@ -16,9 +16,11 @@ const reviews = [
 ];
 
 async function createReviews() {
-  Review.bulkCreate(reviews).then(() => {
-    console.log("REVIEWS todo bien");
-  });
+  for (let i = 0; i < reviews.length; i++) {
+    let review = reviews[i];
+    await reviewService.create(review);
+  }
+  console.log("REVIEWS todo bien");
 }
 
 module.exports = createReviews;

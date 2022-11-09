@@ -1,3 +1,4 @@
+const orderService = require("../services/orderService.js");
 const { Review } = require("../models");
 
 exports.findAll = () => {
@@ -15,13 +16,54 @@ exports.getRatesAvgByBookId = async (bookId) => {
     return [{ promedio: 0 }];
   } else {
     let acum = 0;
-    for (i = 0; i < reviews.length; i++) {
+    for (let i = 0; i < reviews.length; i++) {
       acum += reviews[i].rate;
     }
     return [{ promedio: Math.round(acum / reviews.length) }];
   }
 };
 
-exports.create = (review) => {
-  return Review.create(review);
+exports.create = async (review) => {
+  let userId = review.userId;
+  let bookId = review.bookId;
+  let reviews = await this.getByBookId(bookId); // GET ALL REVIEWS BY BOOK ID
+  let userFound = checkUser(reviews, userId); // CHECK IF THAT USER HAVE A REVIEW
+  let orders = await orderService.ordersByUser(userId); // GET ALL ORDERS BY USER ID
+  let userBoughtBook = checkOrders(orders, bookId); // CHECKS IF THAT USER BOUGHT THE BOOK
+
+  // IF THE USER DOESNT HAVE A REVIEW FOR THAT BOOK AND BOUGHT THE BOOK, CREATE THE REVIEW
+  if (!userFound && userBoughtBook) {
+    return Review.create(review);
+  } else {
+    throw Error(
+      "Puedes registrar tu opinion solo una vez y/o haber comprado el libro"
+    );
+  }
 };
+
+// FUNCTION TO ADITIONAL INFORMATION
+
+function checkUser(reviews, userId) {
+  let userFound = false;
+  for (let i = 0; i < reviews.length; i++) {
+    let review = reviews[i].dataValues;
+    if (review.userId === userId) {
+      userFound = true;
+    }
+  }
+  return userFound;
+}
+
+function checkOrders(orders, bookId) {
+  let userBoughtBook = false;
+  for (let i = 0; i < orders.length; i++) {
+    let bookOrdersArray = orders[i].dataValues.book_orders;
+    for (let j = 0; j < bookOrdersArray.length; j++) {
+      let bookInOrder = bookOrdersArray[j].bookId;
+      if (bookInOrder === bookId) {
+        userBoughtBook = true;
+      }
+    }
+  }
+  return userBoughtBook;
+}

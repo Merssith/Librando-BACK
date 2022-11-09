@@ -95,7 +95,7 @@ exports.searchByQueryString = async (queryString) => {
 // ASYNC FUNCTIONS TO GET ALL ADITIONAL INFORMATION
 
 async function getGenre(bookArray) {
-  for (i = 0; i < bookArray.length; i++) {
+  for (let i = 0; i < bookArray.length; i++) {
     let genreId = bookArray[i].genreId;
     let genre = await Genre.findByPk(genreId, {
       attributes: { exclude: ["createdAt", "updatedAt", "bookId", "id"] },
