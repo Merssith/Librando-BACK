@@ -4,6 +4,6 @@ const orderCreatorService = require("../services/orderCreatorService.js");
 exports.createFullOrder = (req, res) => {
   orderCreatorService
     .createFullOrder(req.body)
-    .then((orders) => res.status(200).send(orders))
+    .then((order) => res.status(201).send(order))
     .catch((err) => res.status(400).send(err));
 };
