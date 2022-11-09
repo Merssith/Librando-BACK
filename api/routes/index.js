@@ -9,6 +9,7 @@ const paymentMethods = require("./paymentMethods");
 const reviews = require("./reviews.js");
 const bookOrder = require("./bookOrder.js");
 const genres = require("./genres.js");
+const orderCreator = require("./orderCreator.js");
 
 router.use("/users", users);
 router.use("/books", books);
@@ -18,5 +19,6 @@ router.use("/paymentMethods", paymentMethods);
 router.use("/reviews", reviews);
 router.use("/bookOrder", bookOrder);
 router.use("/genres", genres);
+router.use("/orderCreator", orderCreator);
 
 module.exports = router;
