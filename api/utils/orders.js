@@ -11,8 +11,20 @@ const orders = [
   },
   {
     userId: 2,
+    statusId: 1,
+    paymentMethodId: 2,
+    total: 0,
+  },
+  {
+    userId: 1,
     statusId: 2,
     paymentMethodId: 3,
+    total: 0,
+  },
+  {
+    userId: 1,
+    statusId: 1,
+    paymentMethodId: 4,
     total: 0,
   },
 ];
