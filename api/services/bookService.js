@@ -4,6 +4,7 @@ const Op = sequelize.Op;
 
 exports.findAll = async () => {
   let books = await Book.findAll({
+    where: { deleted: false },
     include: [
       {
         model: Review,

@@ -15,10 +15,10 @@ router.get("/logout", userController.logoutUser);
 //RUTA PARA EDITAR UN USUARIO
 router.put("/:id", userController.editUser);
 
-// ADMIN ROUTES
-
 //RUTA PARA DEVOLVER USUARIO LOGGEADO (SI LO HAY)
 router.get("/me", validateAuth, userController.getMe);
+
+// ADMIN ROUTES
 
 //RUTA PARA PROMOVER UN ADMINISTRADOR...
 router.put("/admin/:id", validateAdmin, userController.promoveAdmin);

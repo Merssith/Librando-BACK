@@ -22,7 +22,7 @@ exports.findBooksByGenreIdOrName = async (queryString) => {
     queryString = searchId.dataValues.id;
   }
   let books = await Book.findAll({
-    where: { genreId: queryString },
+    where: { genreId: queryString, deleted: false },
     include: [
       {
         model: Review,
