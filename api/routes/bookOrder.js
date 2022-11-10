@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const bookOrders_controller = require("../controllers/bookOrdersController.js");
+const { validateAdmin } = require("../middlewares/auth");
 
 // GET ALL BOOK ORDERS
-router.get("/", bookOrders_controller.index);
+router.get("/", validateAdmin, bookOrders_controller.index);
 
 // GET BOOK ORDERS BY ORDER ID
-router.get("/:orderId", bookOrders_controller.findByOrderId);
+router.get("/:orderId", validateAdmin, bookOrders_controller.findByOrderId);
 
 // CREATE BOOK ORDERS
-router.post("/create", bookOrders_controller.createBookOrder);
+router.post("/create", validateAdmin, bookOrders_controller.createBookOrder);
 
 module.exports = router;

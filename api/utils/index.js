@@ -1,13 +1,13 @@
-const createStatus = require("./status");
-const createPayments = require("./payments");
 const createUsers = require("./users");
 const createBooks = require("./books");
-const createReviews = require("./reviews");
+const createPayments = require("./payments");
+const createStatus = require("./status");
 const createOrders = require("./orders");
 const createBookOrders = require("./book_orders");
+const createReviews = require("./reviews");
 
-createBooks()
-  .then(() => createUsers())
+createUsers()
+  .then(() => createBooks())
   .then(() => createPayments())
   .then(() => createStatus())
   .then(() => createOrders())
