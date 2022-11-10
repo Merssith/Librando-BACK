@@ -23,6 +23,26 @@ const book_orders = [
     quantity: 2,
     bookId: 1,
   },
+  {
+    orderId: 3,
+    quantity: 1,
+    bookId: 5,
+  },
+  {
+    orderId: 3,
+    quantity: 1,
+    bookId: 80,
+  },
+  {
+    orderId: 3,
+    quantity: 1,
+    bookId: 34,
+  },
+  {
+    orderId: 4,
+    quantity: 1,
+    bookId: 93,
+  },
 ];
 
 async function createBookOrders() {
