@@ -5,7 +5,15 @@ const { generateToken } = require("../config/tokens");
 exports.getUsers = (req, res) => {
   userService
     .findAll()
-    .then((orders) => res.status(200).send(orders))
+    .then((users) => res.status(200).send(users))
+    .catch((err) => res.status(400).send(err));
+};
+
+exports.getUserById = (req, res) => {
+  const id = req.params.id;
+  userService
+    .findOne(id)
+    .then((user) => res.status(200).send(user))
     .catch((err) => res.status(400).send(err));
 };
 
