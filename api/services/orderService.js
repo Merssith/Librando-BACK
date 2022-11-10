@@ -83,8 +83,8 @@ async function getAditionalInformation(ordersArray) {
 
 async function getPayment(ordersArray) {
   for (let i = 0; i < ordersArray.length; i++) {
-    let paymentId = ordersArray[i].statusId;
-    let payment = await PaymentMethod.findByPk(paymentId, {
+    let paymentMethodId = ordersArray[i].paymentMethodId;
+    let payment = await PaymentMethod.findByPk(paymentMethodId, {
       attributes: { exclude: ["createdAt", "updatedAt", "orderId"] },
     });
     ordersArray[i].dataValues.payment = payment;
