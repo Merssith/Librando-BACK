@@ -97,6 +97,7 @@ exports.searchByQueryString = async (queryString) => {
           },
         },
       ],
+      deleted: false,
     },
     include: [
       {
