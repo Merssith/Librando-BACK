@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 [![Contributors][contributors-shield]][contributors-url]
 [![Issues][issues-shield]][issues-url]
 
@@ -10,7 +11,7 @@
     <img src="images/logo.png" alt="Logo" width="300">
   </a>
 
-<h3 align="center">ECOMMERCE LIBRANDO BOOKSTORE</h3>
+<h3 align="center">BACKEND ECOMMERCE LIBRANDO BOOKSTORE</h3>
 
   <p align="center">
     Proyecto de ecommerce para bootcamp Plataforma 5
@@ -31,24 +32,23 @@
   <summary>Contenido</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Sobre el proyecto</a>
+      <a href="#sobre-el-proyecto">Sobre el proyecto</a>
       <ul>
-        <li><a href="#built-with">Stack de tecnologías</a></li>
+        <li><a href="#stack-de-tecnologías">Stack de tecnologías</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Empezando</a>
+      <a href="#empezando">Empezando</a>
       <ul>
-        <li><a href="#prerequisites">Pre-requisitos</a></li>
-        <li><a href="#installation">Instalación</a></li>
+        <li><a href="#pre-requisitos">Pre-requisitos</a></li>
+        <li><a href="#instalación">Instalación</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Uso</a></li>
+    <li><a href="#metodos-de-api">Metodos de API</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contribuye</a></li>
-    <li><a href="#license">Licencia</a></li>
-    <li><a href="#contact">Contacto</a></li>
-    <li><a href="#acknowledgments">Agradecimientos</a></li>
+    <li><a href="#contribuye">Contribuye</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#agradecimientos">Agradecimientos</a></li>
   </ol>
 </details>
 
@@ -59,133 +59,153 @@
 
 <img src="images/project.png" alt="Logo" width="100%">
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Merssith`, `Librando-BACK`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+“Librando” es un proyecto de e-commerce de venta de novelas.
+Los usuarios podrán registrarse y navegar a través de las categorías de géneros de novelas, realizar búsquedas y comprar sus novelas favoritas fácilmente.
+También contará con un módulo administrador que permitira gestionar toda la base de datos del sitio.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 
-### Built With
+### Stack de tecnologías
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* NodeJS
+* Nodemon
+* Express
+* Sequelize
+* Postgres
+* Voleyball
+* Bcrypt
+* JWT
+* Handlebars
+* Nodemailer
+* FS
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Empezando
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Actualmente la base de datos se encuentra totalmente de manera local. Por lo tanto, deberás seguir estas instrucciones para levantar el proyecto de backend.
 
-### Prerequisites
+### Pre-requisitos
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+Deberas complir los siguientes pre-requisitos para poder utilizar este proyecto
+* DB: Crea la DB utilizando psql
   ```sh
-  npm install npm@latest -g
+  createdb librando
   ```
 
-### Installation
+### Instalación
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clona el repositorio en tu local
    ```sh
    git clone https://github.com/Merssith/Librando-BACK.git
    ```
-3. Install NPM packages
+2. Instala las dependencias NPM 
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Seedea la base de datos
+   ```sh
+   npm run seed
+   ```
+4. Levanta el servidor
+   ```sh
+   npm run server
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- API  -->
+## Metodos de API
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<img src="https://cdn.shopify.com/s/files/1/0057/5668/2355/files/Postman-logo-orange-2021_1155x.png?v=1637252529" alt="Logo" width="40%">
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Puedes ver todos los metodos de la API descargando la [colección de POSTMAN](https://www.getpostman.com/collections/7cf61cf99122ccd4181f)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Modulo de usuario
+    - [x] Registrarse
+    - [x] Login/Logout
+    - [x] Persistencia de carrito y de usuario
+    - [x] Buscar libros por autor y nombre del libro
+    - [x] Navegar por las categorias
+    - [x] Ver los detalles del libro
+    - [x] Dejar una review de un libro comprado
+    - [x] Recibir correos de confirmación
+    - [x] Cerrar una compra
+    - [x] Ver datos de usuario
+    - [x] Ver compras anteriores
+    
+- [x] Modulo de administrador
+    - [x] Ver todos los usuarios
+    - [x] Promover usuarios a admin
+    - [x] Eliminar usuarios
+    - [x] Ver todas las ordenes
+    - [x] Modificar una orden
+    - [x] Agregar, editar y eliminar libros del catalogo
+    - [x] Agregar, editar y eliminar generos del catalogo (categorias)
+    
+ - [ ] Otros
+    - [ ] OAuth2
 
-See the [open issues](https://github.com/Merssith/Librando-BACK/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contribuye
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+<p>Las contribuciones de la comunidad Dev nos ayudan a aprender, inspirarnos y crear cosas nuevas! Todas las contrinuciones seran muy bienvenidas!</p>
+<p>Si tienes algunas sugerencia para mejorar nuestro proyecto, por favor forkea el repositorio y crea un pull request.</p>
+<p>Muchas gracias!</p>
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+1. Forkea el repositorio
+2. Crea tu branch (`git checkout -b feature/MiFeature`)
+3. Comitea tus cambios (`git commit -m 'Agrego MiFeature'`)
+4. Pushea a la branch (`git push origin feature/MiFeature`)
+5. Abri un pull request
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 <!-- CONTACT -->
-## Contact
+## Contacto
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+* Mercedes Salcedo - mercedes.salcedo1989@gmail.com
+* Franco Livelli - franco.livelli@gmail.com
+* Mikelzon Sarabia - Mikelzonsarabia@gmail.com
+* Alberto Carrillo de Comas - albertokarri@gmail.com
+* Diego Siboldi - die.siboldi@gmail.com
+* Julian Pacheco - jpjulianpacheco@gmail.com
 
-Project Link: [https://github.com/Merssith/Librando-BACK](https://github.com/Merssith/Librando-BACK)
+Link del proyecto: [https://github.com/Merssith/Librando-BACK](https://github.com/Merssith/Librando-BACK)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Agradecimientos
 
-* []()
-* []()
-* []()
+* A Pablo Burgos
+* A todo el staff de Plataforma 5
+* A los jurados
+* A nuestros compañeros de bootcamp
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+<p align="right">(<a href="#readme-top">volver a arriba</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -202,7 +222,6 @@ Project Link: [https://github.com/Merssith/Librando-BACK](https://github.com/Mer
 [license-url]: https://github.com/Merssith/Librando-BACK/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
