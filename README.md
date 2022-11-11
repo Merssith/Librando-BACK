@@ -57,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre el proyecto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="images/project.png" alt="Logo" width="100%">
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Merssith`, `Librando-BACK`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
