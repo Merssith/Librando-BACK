@@ -7,8 +7,11 @@ exports.createFullOrder = async (fullOrder) => {
   let bookOrders = fullOrder.bookOrdersData;
   let userId = user[0].id;
 
+  // AGREGO EL STATUS DE LA ORDEN DE ACUERDO AL PAYMENT METHOD
+  let orderWithStatus = await getOrderStatus(order);
+
   // CREO LA ORDEN VACIA y ME QUEDO CON EL ID DE LA ORDEN PARA LOS BOOK ORDER
-  let orderCreatedId = await createEmptyOrder(userId, order);
+  let orderCreatedId = await createEmptyOrder(userId, orderWithStatus);
 
   // CREO LOS BOOK ORDER CON EL ID DE LA ORDEN
   await createBookOrders(orderCreatedId, bookOrders);
@@ -20,6 +23,23 @@ exports.createFullOrder = async (fullOrder) => {
 };
 
 // ASYNC FUNCTIONS
+
+async function getOrderStatus(order) {
+  let paymentMethodId = order[0].paymentMethodId;
+  let orderStatus = 0;
+  if (paymentMethodId === 3) {
+    orderStatus = 2;
+  } else {
+    orderStatus = 1;
+  }
+  let orderWithStatus = [
+    {
+      statusId: orderStatus,
+      paymentMethodId: paymentMethodId,
+    },
+  ];
+  return orderWithStatus;
+}
 
 async function createEmptyOrder(userId, order) {
   let newOrder = {
