@@ -1,5 +1,5 @@
 const orderService = require("../services/orderService.js");
-const { Review } = require("../models");
+const { Review, User } = require("../models");
 
 exports.findAll = () => {
   return Review.findAll();
@@ -7,6 +7,7 @@ exports.findAll = () => {
 
 exports.getByBookId = async (bookId) => {
   let reviews = await Review.findAll({ where: { bookId: bookId } });
+  await getUser(reviews);
   return reviews;
 };
 
@@ -66,4 +67,27 @@ function checkOrders(orders, bookId) {
     }
   }
   return userBoughtBook;
+}
+
+async function getUser(reviewsArray) {
+  for (let i = 0; i < reviewsArray.length; i++) {
+    let userId = reviewsArray[i].userId;
+    let user = await User.findByPk(userId, {
+      attributes: {
+        exclude: [
+          "createdAt",
+          "updatedAt",
+          "password",
+          "salt",
+          "id",
+          "email",
+          "lastname",
+          "dni",
+          "address",
+          "isAdmin",
+        ],
+      },
+    });
+    reviewsArray[i].dataValues.user = user;
+  }
 }

@@ -16,7 +16,7 @@ router.get("/logout", userController.logoutUser);
 router.put("/:id", userController.editUser);
 
 //RUTA PARA TRAER UN USUARIO POR ID
-router.get("/get/:id", userController.getUserById);
+router.get("/get/:id", validateAuth, userController.getUserById);
 
 //RUTA PARA DEVOLVER USUARIO LOGGEADO (SI LO HAY)
 router.get("/me", validateAuth, userController.getMe);

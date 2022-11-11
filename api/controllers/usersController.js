@@ -30,11 +30,14 @@ exports.createUser = (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
-  const payload = await userService.login(email, password);
-  if (!payload) res.sendStatus(401);
-  const token = generateToken(payload);
-  res.cookie("token", token);
-  res.send(payload);
+  userService
+    .login(email, password)
+    .then((payload) => {
+      const token = generateToken(payload);
+      res.cookie("token", token);
+      res.send(payload);
+    })
+    .catch((err) => res.status(401).send(String(err)));
 };
 
 exports.logoutUser = (req, res) => {

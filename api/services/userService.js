@@ -5,12 +5,11 @@ exports.findAll = () => {
 };
 
 exports.findOne = async (id) => {
-  let user = await User.findByPk(id);
-  return user;
-};
-
-exports.findByDni = async (dni) => {
-  let user = await User.findOne({ where: { dni } });
+  let user = await User.findByPk(id, {
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "password", "salt", "isAdmin"],
+    },
+  });
   return user;
 };
 
@@ -20,9 +19,9 @@ exports.create = (user) => {
 
 exports.login = async (email, password) => {
   const user = await User.findOne({ where: { email } });
-  if (!user) return false;
+  if (!user) throw Error("Usuario no encontrado");
   const validate = await user.validatePassword(password);
-  if (!validate) return false;
+  if (!validate) throw Error("Contraseña incorrecta");
   return {
     id: user.id,
     email: user.email,
